@@ -9,7 +9,7 @@ class Fighter(object, metaclass=ABCMeta):
     """战斗者（基类）"""
     __slots__ = ('_name','_hp')
 
-    def __int__(self,name,hp):
+    def __init__(self,name,hp):
         self._name = name
         self._hp = hp
 
@@ -40,8 +40,8 @@ class Ultraman(Fighter):
 
     __slots__ = ('_name','_hp','_mp')
 
-    def __int__(self,name,hp,mp):
-        super(Ultraman, self).__int__(name,hp)
+    def __init__(self,name,hp,mp):
+        super(Ultraman, self).__init__(name,hp)
         self._mp = mp
 
     def attack(self,other):
@@ -117,7 +117,7 @@ def select_alive_one(monsters):
 
     monsters_len = len(monsters)
     while True:
-        index = randint(monsters_len)
+        index = randint(0,monsters_len-1)
         monster = monsters[index]
         if monster.alive > 0:
             return monster
